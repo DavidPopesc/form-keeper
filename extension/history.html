@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Form Keeper — Saved forms</title>
+    <link rel="icon" href="icons/icon32.png" />
+    <link rel="stylesheet" href="ui/common.css" />
+    <link rel="stylesheet" href="ui/history.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="icons/icon48.png" alt="" width="28" height="28" />
+        <h1>Form Keeper</h1>
+      </div>
+      <input id="search" type="search" placeholder="Search everything you've submitted…" autocomplete="off" />
+      <select id="site-filter" aria-label="Filter by site">
+        <option value="">All sites</option>
+      </select>
+      <label class="starred-toggle"><input id="starred-only" type="checkbox" /> Starred</label>
+      <button id="open-settings" class="ghost" title="Settings">⚙︎ Settings</button>
+    </header>
+
+    <div id="paused-banner" class="banner" hidden>
+      Recording is paused — new form submissions are not being saved.
+      <button id="resume">Resume</button>
+    </div>
+
+    <main class="layout">
+      <aside class="list-pane">
+        <div id="list-summary" class="summary muted small"></div>
+        <div id="list" class="list" role="listbox" aria-label="Saved submissions"></div>
+      </aside>
+      <section id="detail" class="detail-pane" aria-live="polite"></section>
+    </main>
+
+    <dialog id="settings">
+      <form method="dialog" class="settings">
+        <h2>Settings</h2>
+
+        <label class="row">
+          <span>
+            <strong>Record form submissions</strong>
+            <span class="muted small">Turn off to pause saving everywhere.</span>
+          </span>
+          <span class="switch"><input id="set-recording" type="checkbox" /><span></span></span>
+        </label>
+
+        <label class="row">
+          <span>
+            <strong>Skip sensitive fields</strong>
+            <span class="muted small">Passwords are never saved. This also skips card numbers, PINs, one-time codes and tokens.</span>
+          </span>
+          <span class="switch"><input id="set-sensitive" type="checkbox" /><span></span></span>
+        </label>
+
+        <label class="row">
+          <span>
+            <strong>Also save GET forms</strong>
+            <span class="muted small">These are usually searches and filters, so they're off by default.</span>
+          </span>
+          <span class="switch"><input id="set-get" type="checkbox" /><span></span></span>
+        </label>
+
+        <div class="block">
+          <strong>Never save on these sites</strong>
+          <div class="add-site">
+            <input id="exclude-input" type="text" placeholder="e.g. mybank.com" />
+            <button id="exclude-add" type="button">Add</button>
+          </div>
+          <ul id="exclude-list" class="exclude-list"></ul>
+        </div>
+
+        <div class="block">
+          <strong>Your data</strong>
+          <p class="muted small">Everything is stored only in this browser profile. Nothing is uploaded.</p>
+          <div class="data-actions">
+            <button id="export" type="button">Export JSON</button>
+            <button id="import" type="button">Import JSON</button>
+            <input id="import-file" type="file" accept="application/json,.json" hidden />
+            <button id="clear-all" type="button" class="danger">Delete everything</button>
+          </div>
+        </div>
+
+        <div class="dialog-footer">
+          <button class="primary" value="close">Done</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <script type="module" src="ui/history.js"></script>
+  </body>
+</html>

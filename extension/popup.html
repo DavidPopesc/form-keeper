@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="ui/common.css" />
+    <link rel="stylesheet" href="ui/popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon32.png" alt="" width="24" height="24" />
+      <div>
+        <h1>Form Keeper</h1>
+        <div id="count" class="muted small"></div>
+      </div>
+    </header>
+
+    <section class="toggles">
+      <label class="row">
+        <span>Record form submissions</span>
+        <span class="switch"><input id="recording" type="checkbox" /><span></span></span>
+      </label>
+      <label class="row" id="site-row" hidden>
+        <span>Save forms on <strong id="site-name"></strong></span>
+        <span class="switch"><input id="site-enabled" type="checkbox" /><span></span></span>
+      </label>
+    </section>
+
+    <section>
+      <h2 class="muted small">Recent</h2>
+      <div id="recent" class="recent"></div>
+    </section>
+
+    <footer>
+      <button id="open-history" class="primary">View all saved forms</button>
+    </footer>
+
+    <script type="module" src="ui/popup.js"></script>
+  </body>
+</html>
